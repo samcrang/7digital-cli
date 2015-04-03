@@ -19,7 +19,7 @@ module SevenDigital
 
       desc 'clip', 'clip'
       def clip(track_id)
-        puts ::SevenDigital::Endpoints::Clip.new(ENV['SEVENDIGITAL_CONSUMER_KEY'], ENV['SEVENDIGITAL_CONSUMER_SECRET']).generate_url(track_id: track_id)
+        puts ::SevenDigital::Endpoints::Clip.new(ENV['SEVENDIGITAL_CONSUMER_KEY'], ENV['SEVENDIGITAL_CONSUMER_SECRET']).generate_url(track_id: track_id, country: 'GB')
       end
 
       desc 'stream_catalogue', 'stream/catalogue'

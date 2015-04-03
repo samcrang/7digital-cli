@@ -14,8 +14,7 @@ module SevenDigital
             'oauth_timestamp' => OAuth::Helper.generate_timestamp,
             'oauth_nonce' => OAuth::Helper.generate_key,
             'oauth_signature_method' => 'HMAC-SHA1',
-            'oauth_version' => '1.0',
-            'country' => 'GB'
+            'oauth_version' => '1.0'
           }.merge(user_params)
 
           request = OAuth::RequestProxy.proxy('method' => :GET, 'uri' => @url, 'parameters' => all_params)
