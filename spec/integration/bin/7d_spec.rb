@@ -52,6 +52,16 @@ module SevenDigital
           expect(r.status[0]).to eq('200')
         end
       end
+
+      it 'should be able to fetch stream/catalogue' do
+        _, stdout, _ = Open3.popen3('bin/7d sign stream_catalogue 1234')
+
+        uri = stdout.gets
+
+        open(uri) do |r|
+          expect(r.status[0]).to eq('200')
+        end
+      end
     end
   end
 end

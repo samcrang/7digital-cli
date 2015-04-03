@@ -2,6 +2,7 @@ require 'thor'
 require 'endpoints/track_details'
 require 'endpoints/release_details'
 require 'endpoints/clip'
+require 'endpoints/stream_catalogue'
 
 module SevenDigital
   module CLI
@@ -19,6 +20,11 @@ module SevenDigital
       desc 'clip', 'clip'
       def clip(track_id)
         puts ::SevenDigital::Endpoints::Clip.new(ENV['SEVENDIGITAL_CONSUMER_KEY'], ENV['SEVENDIGITAL_CONSUMER_SECRET']).generate_url(track_id)
+      end
+
+      desc 'stream_catalogue', 'stream/catalogue'
+      def stream_catalogue(track_id)
+        puts ::SevenDigital::Endpoints::StreamCatalogue.new(ENV['SEVENDIGITAL_CONSUMER_KEY'], ENV['SEVENDIGITAL_CONSUMER_SECRET']).generate_url(track_id)
       end
     end
   end
