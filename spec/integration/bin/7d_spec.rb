@@ -1,0 +1,36 @@
+require 'spec_helper'
+require 'open3'
+require 'open-uri'
+
+def valid_environment?
+  !ENV['SEVENDIGITAL_CONSUMER_KEY'].nil? && !ENV['SEVENDIGITAL_CONSUMER_SECRET'].nil?
+end
+
+module SevenDigital
+  RSpec.describe 'bin/7d' do
+    context 'with an incorrectly configured environment' do
+      it 'should fail with error message' do
+        skip 'TODO'
+      end
+    end
+
+    context 'with correctly configured environment', skip: !valid_environment? do
+      it 'should invoke thor' do
+        _, stdout, _ = Open3.popen3('bin/7d')
+
+        expect(stdout.gets).to match(/Commands/)
+      end
+
+      it 'should be able to fetch track/details' do
+        _, stdout, _ = Open3.popen3('bin/7d sign track_details 1234')
+
+        uri = stdout.gets
+
+        open(uri) do |r|
+          expect(r.status[0]).to eq('200')
+          expect(r.read).to match(/Everyday Struggle/)
+        end
+      end
+    end
+  end
+end
