@@ -11,7 +11,14 @@ bundle
 bin/7d
 ```
 
-You'll need to set the `SEVENDIGITAL_CONSUMER_KEY` and `SEVENDIGITAL_CONSUMER_SECRET` environment variables to whatever they should be.
+You'll need to set the following environment variables:
+
+```
+SEVENDIGITAL_CONSUMER_KEY
+SEVENDIGITAL_CONSUMER_SECRET
+SEVENDIGITAL_TOKEN
+SEVENDIGITAL_TOKEN_SECRET
+```
 
 Usage
 -----
