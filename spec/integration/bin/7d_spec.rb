@@ -32,6 +32,17 @@ module SevenDigital
         end
       end
 
+      it 'should be able to fetch release/details' do
+        _, stdout, _ = Open3.popen3('bin/7d sign release_details 12345')
+
+        uri = stdout.gets
+
+        open(uri) do |r|
+          expect(r.status[0]).to eq('200')
+          expect(r.read).to match(/Extremoduro/)
+        end
+      end
+
       it 'should be able to fetch a preview clip' do
         _, stdout, _ = Open3.popen3('bin/7d sign clip 1234')
 

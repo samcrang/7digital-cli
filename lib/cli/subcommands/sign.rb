@@ -1,5 +1,6 @@
 require 'thor'
 require 'endpoints/track_details'
+require 'endpoints/release_details'
 require 'endpoints/clip'
 
 module SevenDigital
@@ -8,6 +9,11 @@ module SevenDigital
       desc 'track_details', 'track/details'
       def track_details(track_id)
         puts ::SevenDigital::Endpoints::TrackDetails.new(ENV['SEVENDIGITAL_CONSUMER_KEY']).generate_url(track_id)
+      end
+
+      desc 'release_details', 'release/details'
+      def release_details(release_id)
+        puts ::SevenDigital::Endpoints::ReleaseDetails.new(ENV['SEVENDIGITAL_CONSUMER_KEY']).generate_url(release_id)
       end
 
       desc 'clip', 'clip'
