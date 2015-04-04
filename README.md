@@ -8,9 +8,10 @@ A command-line tool for interacting with the 7digital API.
 Installation
 ------------
 
+Currently in pre-release, you can store the latest build from RubyGems:
+
 ```
-bundle
-bin/7d
+gem install 7d --pre
 ```
 
 You'll need to set the following environment variables:
@@ -25,14 +26,12 @@ SEVENDIGITAL_TOKEN_SECRET
 Usage
 -----
 
-Until I get round to bundling this up as a gem you'll need to invoke the executable from within the repo:
-
 ```
-$ SEVENDIGITAL_CONSUMER_KEY='YOUR_KEY_HERE' SEVENDIGITAL_CONSUMER_SECRET='YOUR_SECRET_HERE' bin/7d sign clip 1234
+$ SEVENDIGITAL_CONSUMER_KEY='YOUR_KEY_HERE' SEVENDIGITAL_CONSUMER_SECRET='YOUR_SECRET_HERE' 7d sign clip 1234
 ```
 
 Other than just being able to sign calls to 7digital endpoints you might find it useful to pipe the ouput around–here we are using it to measure the time to first byte for multiple requests:
 
 ```
-$ seq 10 | xargs -I z bin/7d sign clip 1234 | xargs -n 1 curl -so /dev/null --write-out "Status: %{http_code}, TTFB: %{time_starttransfer}\n"
+$ seq 10 | xargs -I z 7d sign clip 1234 | xargs -n 1 curl -so /dev/null --write-out "Status: %{http_code}, TTFB: %{time_starttransfer}\n"
 ```
