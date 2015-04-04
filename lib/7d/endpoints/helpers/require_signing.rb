@@ -5,9 +5,11 @@ module SevenDigital
     module Helpers
       module RequireSigning
         def generate_url(parameters)
-          user_params = parameters.map do |key, val|
-            [key.to_s.sub('_', ''), val]
-          end.to_h
+          user_params = {}
+
+          parameters.each do |key, val|
+            user_params[key.to_s.sub('_', '')] = val
+          end
 
           all_params = {
             'oauth_consumer_key' => @consumer_key,
