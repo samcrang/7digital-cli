@@ -1,4 +1,4 @@
-require 'net/http'
+require 'faraday'
 
 require '7d/endpoints/clip'
 require '7d/endpoints/track_details'

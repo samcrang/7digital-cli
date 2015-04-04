@@ -5,12 +5,10 @@ describe 'TrackDetails' do
 
   describe '#generate_url' do
     it 'should return a signed url' do
-      uri = URI(subject.generate_url(track_id: 1234))
+      res = Faraday.get(subject.generate_url(track_id: 1234))
 
-      res = Net::HTTP.get_response(uri)
-
-      expect(res.code).to eq('200')
-      expect(res.content_type).to eq('application/xml')
+      expect(res.status).to eq(200)
+      expect(res.headers['Content-Type']).to eq('application/xml; charset=utf-8')
       expect(res.body).to include('Everyday Struggle')
     end
   end
