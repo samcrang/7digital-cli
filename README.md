@@ -1,6 +1,8 @@
 7digital CLI
 ============
 
+[![Build Status](https://travis-ci.org/samcrang/7digital-cli.svg?branch=master)](https://travis-ci.org/samcrang/7digital-cli)
+
 A command-line tool for interacting with the 7digital API.
 
 Installation
