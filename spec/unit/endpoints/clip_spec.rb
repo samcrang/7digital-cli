@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'endpoints/clip'
+require '7d/endpoints/clip'
 
 module SevenDigital
   module Endpoints

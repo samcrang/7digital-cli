@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'endpoints/release_details'
+require '7d/endpoints/release_details'
 
 module SevenDigital
   module Endpoints

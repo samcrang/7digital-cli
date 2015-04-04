@@ -1,4 +1,4 @@
-require 'endpoints/helpers/require_signing_with_user'
+require '7d/endpoints/helpers/require_signing_with_user'
 
 module SevenDigital
   module Endpoints

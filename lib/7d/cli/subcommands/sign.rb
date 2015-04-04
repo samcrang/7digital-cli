@@ -1,9 +1,9 @@
 require 'thor'
-require 'endpoints/track_details'
-require 'endpoints/release_details'
-require 'endpoints/clip'
-require 'endpoints/stream_catalogue'
-require 'endpoints/stream_subscription'
+require '7d/endpoints/track_details'
+require '7d/endpoints/release_details'
+require '7d/endpoints/clip'
+require '7d/endpoints/stream_catalogue'
+require '7d/endpoints/stream_subscription'
 
 module SevenDigital
   module CLI

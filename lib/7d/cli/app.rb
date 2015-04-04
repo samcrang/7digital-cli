@@ -1,5 +1,5 @@
 require 'thor'
-require 'cli/subcommands/sign'
+require '7d/cli/subcommands/sign'
 
 module SevenDigital
   module CLI

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'endpoints/stream_catalogue'
+require '7d/endpoints/stream_catalogue'
 
 module SevenDigital
   module Endpoints

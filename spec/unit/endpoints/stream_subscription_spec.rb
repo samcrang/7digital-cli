@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'endpoints/stream_subscription'
+require '7d/endpoints/stream_subscription'
 
 module SevenDigital
   module Endpoints

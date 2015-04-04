@@ -13,5 +13,5 @@ end
 
 exit if missing_environment_variables
 
-require 'cli/app'
+require '7d/cli/app'
 SevenDigital::CLI::App.start(ARGV)

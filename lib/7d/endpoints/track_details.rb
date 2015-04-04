@@ -1,4 +1,4 @@
-require 'endpoints/helpers/require_consumer_key'
+require '7d/endpoints/helpers/require_consumer_key'
 
 module SevenDigital
   module Endpoints
