@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name         = '7d'
-  s.version      = '0.0.1.pre'
+  s.version      = '0.0.1.pre.2'
   s.licenses     = ['MIT']
   s.summary      = 'Provides a CLI to the 7digital API'
   s.description  = <<-EOF
