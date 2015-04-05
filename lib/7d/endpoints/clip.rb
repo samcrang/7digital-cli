@@ -10,9 +10,9 @@ module SevenDigital
         @consumer_secret = consumer_secret
       end
 
-      def generate_url(parameters)
-        @url = "https://previews.7digital.com/clip/#{parameters[:track_id]}"
-        super(parameters)
+      def generate_url(track_id, country)
+        @url = "https://previews.7digital.com/clip/#{track_id}"
+        sign country: country
       end
     end
   end

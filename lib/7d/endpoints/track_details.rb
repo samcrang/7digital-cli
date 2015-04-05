@@ -9,6 +9,10 @@ module SevenDigital
         @consumer_key = consumer_key
         @url = 'https://api.7digital.com/1.2/track/details'
       end
+
+      def generate_url(track_id)
+        sign trackid: track_id
+      end
     end
   end
 end

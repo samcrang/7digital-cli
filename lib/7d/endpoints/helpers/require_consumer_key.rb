@@ -2,7 +2,7 @@ module SevenDigital
   module Endpoints
     module Helpers
       module RequireConsumerKey
-        def generate_url(parameters)
+        def sign(parameters)
           qs = parameters.reduce('') do |memo, (key, val)|
             memo + "&#{key.to_s.sub('_', '')}=#{val}"
           end

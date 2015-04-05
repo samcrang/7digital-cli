@@ -5,7 +5,7 @@ describe 'ReleaseDetails' do
 
   describe '#generate_url' do
     it 'should return a signed url' do
-      res = Faraday.get(subject.generate_url(release_id: 2345))
+      res = Faraday.get(subject.generate_url(2345))
 
       expect(res.status).to eq(200)
       expect(res.headers['Content-Type']).to eq('application/xml; charset=utf-8')

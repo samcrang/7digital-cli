@@ -5,7 +5,7 @@ describe 'TrackDetails' do
 
   describe '#generate_url' do
     it 'should return a signed url' do
-      res = Faraday.get(subject.generate_url(track_id: 1234))
+      res = Faraday.get(subject.generate_url(1234))
 
       expect(res.status).to eq(200)
       expect(res.headers['Content-Type']).to eq('application/xml; charset=utf-8')

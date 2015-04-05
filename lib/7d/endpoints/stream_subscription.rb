@@ -12,6 +12,10 @@ module SevenDigital
         @token_secret = token_secret
         @url = 'https://stream.svc.7digital.net/stream/subscription'
       end
+
+      def generate_url(track_id)
+        sign trackid: track_id
+      end
     end
   end
 end

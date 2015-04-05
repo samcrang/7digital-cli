@@ -4,11 +4,11 @@ module SevenDigital
   module Endpoints
     module Helpers
       module RequireSigningWithUser
-        def generate_url(parameters)
+        def sign(parameters)
           user_params = {}
 
           parameters.each do |key, val|
-            user_params[key.to_s.sub('_', '')] = val
+            user_params[key.to_s] = val
           end
 
           all_params = {

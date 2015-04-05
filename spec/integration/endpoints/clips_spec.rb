@@ -5,7 +5,7 @@ describe 'Clip' do
 
   describe '#generate_url' do
     it 'should return a signed URI that can be successfully invoked' do
-      res = Faraday.get(subject.generate_url(track_id: 1234, country: 'GB'))
+      res = Faraday.get(subject.generate_url(1234, 'GB'))
 
       expect(res.status).to eq(200)
       expect(res.headers['Content-Type']).to eq('audio/mpeg')
