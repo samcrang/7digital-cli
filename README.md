@@ -8,7 +8,7 @@ A command-line tool for interacting with the 7digital API.
 Installation
 ------------
 
-Currently in pre-release, you can store the latest build from RubyGems:
+Currently in pre-release, you can install the latest build from RubyGems:
 
 ```
 gem install 7d --pre
