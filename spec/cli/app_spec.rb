@@ -35,9 +35,15 @@ describe ::SevenDigital::CLI::App do
         end
 
         it 'should pass the correct arguments to the endpoint handler' do
-          expect(signature_generator).to receive(:generate_url).with(1234)
+          expect(signature_generator).to receive(:generate_url).with(1234, 'GB')
 
           subject.run(%w(sign release/details --releaseid=1234))
+        end
+
+        it 'should allow country to be overridden' do
+          expect(signature_generator).to receive(:generate_url).with(1234, 'US')
+
+          subject.run(%w(sign release/details --releaseid=1234 --country=US))
         end
 
         it 'should not allow someone to specify a non-integer release id' do

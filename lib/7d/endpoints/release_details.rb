@@ -9,8 +9,8 @@ module SevenDigital
         'https://api.7digital.com/1.2/release/details'
       end
 
-      def generate_url(release_id)
-        sign releaseid: release_id
+      def generate_url(release_id, country)
+        sign releaseid: release_id, country: country
       end
     end
   end

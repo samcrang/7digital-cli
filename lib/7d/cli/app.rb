@@ -35,8 +35,9 @@ module SevenDigital
         when 'release/details'
           opts = Trollop.options args do
             opt :releaseid, 'Release ID', type: :integer, required: true
+            opt :country, 'Country', type: :string, default: 'GB'
           end
-          @signature_generator_factory.find(endpoint).generate_url(opts[:releaseid])
+          @signature_generator_factory.find(endpoint).generate_url(opts[:releaseid], opts[:country])
 
         when 'clip'
           opts = Trollop.options args do
