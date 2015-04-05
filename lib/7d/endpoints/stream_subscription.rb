@@ -5,12 +5,8 @@ module SevenDigital
     class StreamSubscription
       include Helpers::RequireSigningWithUser
 
-      def initialize(consumer_key, consumer_secret, token_key, token_secret)
-        @consumer_key = consumer_key
-        @consumer_secret = consumer_secret
-        @token_key = token_key
-        @token_secret = token_secret
-        @url = 'https://stream.svc.7digital.net/stream/subscription'
+      def url(_ = nil)
+        'https://stream.svc.7digital.net/stream/subscription'
       end
 
       def generate_url(track_id)

@@ -5,14 +5,12 @@ module SevenDigital
     class Clip
       include Helpers::RequireSigning
 
-      def initialize(consumer_key, consumer_secret)
-        @consumer_key = consumer_key
-        @consumer_secret = consumer_secret
+      def url(parameters = nil)
+        "https://previews.7digital.com/clip/#{parameters[:track_id]}"
       end
 
       def generate_url(track_id, country)
-        @url = "https://previews.7digital.com/clip/#{track_id}"
-        sign country: country
+        sign track_id: track_id, country: country
       end
     end
   end

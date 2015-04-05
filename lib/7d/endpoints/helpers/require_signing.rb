@@ -4,6 +4,11 @@ module SevenDigital
   module Endpoints
     module Helpers
       module RequireSigning
+        def initialize(consumer_key, consumer_secret)
+          @consumer_key = consumer_key
+          @consumer_secret = consumer_secret
+        end
+
         def sign(parameters)
           user_params = {}
 
@@ -19,7 +24,7 @@ module SevenDigital
             'oauth_version' => '1.0'
           }.merge(user_params)
 
-          request = OAuth::RequestProxy.proxy('method' => :GET, 'uri' => @url, 'parameters' => all_params)
+          request = OAuth::RequestProxy.proxy('method' => :GET, 'uri' => url(parameters), 'parameters' => all_params)
 
           request.sign! consumer_secret: @consumer_secret
           request.signed_uri

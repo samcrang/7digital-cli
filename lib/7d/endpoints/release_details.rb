@@ -5,9 +5,8 @@ module SevenDigital
     class ReleaseDetails
       include Helpers::RequireConsumerKey
 
-      def initialize(consumer_key)
-        @consumer_key = consumer_key
-        @url = 'https://api.7digital.com/1.2/release/details'
+      def url(_ = nil)
+        'https://api.7digital.com/1.2/release/details'
       end
 
       def generate_url(release_id)
