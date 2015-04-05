@@ -1,5 +1,8 @@
 require 'faraday'
 
+require '7d/cli/app'
+require '7d/cli/signature_generator_factory'
+
 require '7d/endpoints/clip'
 require '7d/endpoints/track_details'
 require '7d/endpoints/release_details'
