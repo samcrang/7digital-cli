@@ -18,6 +18,6 @@ describe 'bin/7d' do
   end
 
   it 'should be able to generate a URI for stream/subscription' do
-    expect(`bin/7d sign stream/subscription 1234`).to start_with('https')
+    expect(`bin/7d sign stream/subscription --trackid=1234`).to start_with('https')
   end
 end

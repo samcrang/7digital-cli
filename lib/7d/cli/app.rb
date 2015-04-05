@@ -28,32 +28,32 @@ module SevenDigital
         case endpoint
         when 'track/details'
           opts = Trollop.options args do
-            opt :trackid, 'Track ID', type: :string
+            opt :trackid, 'Track ID', type: :integer, required: true
           end
           @signature_generator_factory.find(endpoint).generate_url(opts[:trackid])
 
         when 'release/details'
           opts = Trollop.options args do
-            opt :releaseid, 'Release ID', type: :string
+            opt :releaseid, 'Release ID', type: :integer, required: true
           end
           @signature_generator_factory.find(endpoint).generate_url(opts[:releaseid])
 
         when 'clip'
           opts = Trollop.options args do
-            opt :trackid, 'Track ID', type: :integer
+            opt :trackid, 'Track ID', type: :integer, required: true
             opt :country, 'Country', type: :string, default: 'GB'
           end
           @signature_generator_factory.find(endpoint).generate_url(opts[:trackid], opts[:country])
 
         when 'stream/subscription'
           opts = Trollop.options args do
-            opt :trackid, 'Track ID', type: :string
+            opt :trackid, 'Track ID', type: :integer, required: true
           end
           @signature_generator_factory.find(endpoint).generate_url(opts[:trackid])
 
         when 'stream/catalogue'
           opts = Trollop.options args do
-            opt :trackid, 'Track ID', type: :string
+            opt :trackid, 'Track ID', type: :integer, required: true
           end
           @signature_generator_factory.find(endpoint).generate_url(opts[:trackid])
         end
