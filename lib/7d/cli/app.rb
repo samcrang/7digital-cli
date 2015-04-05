@@ -48,8 +48,10 @@ module SevenDigital
         when 'stream/subscription'
           opts = Trollop.options args do
             opt :trackid, 'Track ID', type: :integer, required: true
+            opt :formatid, 'Format ID', type: :integer, default: 26
+            opt :country, 'Country', type: :string, default: 'GB'
           end
-          @signature_generator_factory.find(endpoint).generate_url(opts[:trackid])
+          @signature_generator_factory.find(endpoint).generate_url(opts[:trackid], opts[:formatid], opts[:country])
 
         when 'stream/catalogue'
           opts = Trollop.options args do

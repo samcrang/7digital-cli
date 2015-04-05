@@ -85,9 +85,25 @@ describe ::SevenDigital::CLI::App do
         end
 
         it 'should pass the correct arguments to the endpoint handler' do
-          expect(signature_generator).to receive(:generate_url).with(1234)
+          expect(signature_generator).to receive(:generate_url).with(1234, 26, 'GB')
 
           subject.run(%w(sign stream/subscription --trackid=1234))
+        end
+
+        it 'should allow country to be overridden' do
+          expect(signature_generator).to receive(:generate_url).with(1234, 26, 'US')
+
+          subject.run(%w(sign stream/subscription --trackid=1234 --country=US))
+        end
+
+        it 'should allow format id to be overridden' do
+          expect(signature_generator).to receive(:generate_url).with(1234, 55, 'GB')
+
+          subject.run(%w(sign stream/subscription --trackid=1234 --formatid=55))
+        end
+
+        it 'should not allow someone to specify a non-integer format id' do
+          expect { subject.run(%w(sign stream/subscription --trackid=1234 --formatid=invalid)) }.to raise_error(SystemExit)
         end
 
         it 'should not allow someone to specify a non-integer track id' do
@@ -100,7 +116,7 @@ describe ::SevenDigital::CLI::App do
       end
     end
 
-    context 'stream/catalgoue' do
+    context 'stream/catalogue' do
       describe '#run' do
         before(:each) do
           allow(factory).to receive(:find).with('stream/catalogue').and_return(signature_generator)
@@ -112,16 +128,16 @@ describe ::SevenDigital::CLI::App do
           subject.run(%w(sign stream/catalogue --trackid=1234))
         end
 
-        it 'should allow format id to be overridden' do
-          expect(signature_generator).to receive(:generate_url).with(1234, 55, 'GB')
-
-          subject.run(%w(sign stream/catalogue --trackid=1234 --formatid=55))
-        end
-
         it 'should allow country to be overridden' do
           expect(signature_generator).to receive(:generate_url).with(1234, 26, 'US')
 
           subject.run(%w(sign stream/catalogue --trackid=1234 --country=US))
+        end
+
+        it 'should allow format id to be overridden' do
+          expect(signature_generator).to receive(:generate_url).with(1234, 55, 'GB')
+
+          subject.run(%w(sign stream/catalogue --trackid=1234 --formatid=55))
         end
 
         it 'should not allow someone to specify a non-integer format id' do
