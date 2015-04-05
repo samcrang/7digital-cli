@@ -9,8 +9,8 @@ module SevenDigital
         @url = 'https://stream.svc.7digital.net/stream/catalogue'
       end
 
-      def generate_url(track_id)
-        sign trackid: track_id
+      def generate_url(track_id, format_id, country)
+        sign trackid: track_id, formatid: format_id, country: country
       end
     end
   end

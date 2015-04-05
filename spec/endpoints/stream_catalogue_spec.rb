@@ -6,12 +6,14 @@ describe ::SevenDigital::Endpoints::StreamCatalogue do
   context 'with dummy authorization configuration' do
     describe '#generate_url' do
       it 'should return a signed url' do
-        actual = subject.generate_url(1234)
+        actual = subject.generate_url(1234, 26, 'GB')
 
         expect(actual).to start_with('https://stream.svc.7digital.net/stream/catalogue')
         expect(actual).to include('oauth_signature=')
         expect(actual).to include('oauth_consumer_key=foo')
         expect(actual).to include('trackid=1234')
+        expect(actual).to include('formatid=26')
+        expect(actual).to include('country=GB')
       end
     end
   end
@@ -21,7 +23,7 @@ describe ::SevenDigital::Endpoints::StreamCatalogue do
 
     describe '#generate_url' do
       it 'should return a signed url' do
-        res = Faraday.get(subject.generate_url(1234))
+        res = Faraday.get(subject.generate_url(1234, 26, 'GB'))
 
         expect(res.status).to eq(200)
         expect(res.headers['Content-Type']).to eq('audio/mpeg')
