@@ -4,7 +4,7 @@ module SevenDigital
       module RequireConsumerKey
         def sign(parameters)
           qs = parameters.reduce('') do |memo, (key, val)|
-            memo + "&#{key.to_s}=#{val}"
+            memo + "&#{key}=#{val}"
           end
 
           "#{@url}?oauth_consumer_key=#{@consumer_key}#{qs}"
