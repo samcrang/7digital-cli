@@ -29,8 +29,9 @@ module SevenDigital
         when 'track/details'
           opts = Trollop.options args do
             opt :trackid, 'Track ID', type: :integer, required: true
+            opt :country, 'Country', type: :string, default: 'GB'
           end
-          @signature_generator_factory.find(endpoint).generate_url(opts[:trackid])
+          @signature_generator_factory.find(endpoint).generate_url(opts[:trackid], opts[:country])
 
         when 'release/details'
           opts = Trollop.options args do

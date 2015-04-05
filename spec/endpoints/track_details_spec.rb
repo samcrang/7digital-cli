@@ -6,7 +6,7 @@ describe ::SevenDigital::Endpoints::TrackDetails do
 
     describe '#generate_url' do
       it 'should return a signed url' do
-        expect(subject.generate_url(1234)).to eq('https://api.7digital.com/1.2/track/details?oauth_consumer_key=foo&trackid=1234')
+        expect(subject.generate_url(1234, 'GB')).to eq('https://api.7digital.com/1.2/track/details?oauth_consumer_key=foo&trackid=1234&country=GB')
       end
     end
   end
@@ -16,7 +16,7 @@ describe ::SevenDigital::Endpoints::TrackDetails do
 
     describe '#generate_url' do
       it 'should requestable' do
-        res = Faraday.get(subject.generate_url(1234))
+        res = Faraday.get(subject.generate_url(1234, 'GB'))
 
         expect(res.status).to eq(200)
         expect(res.headers['Content-Type']).to eq('application/xml; charset=utf-8')
