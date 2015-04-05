@@ -8,12 +8,6 @@ module SevenDigital
       end
 
       def run(args)
-        parse(args)
-      end
-
-      private
-
-      def parse(args)
         subcommand = args.shift
 
         case subcommand
