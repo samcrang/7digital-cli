@@ -6,7 +6,7 @@ module SevenDigital
       include Helpers::RequireSigning
 
       def url(_ = nil)
-        @url = 'https://stream.svc.7digital.net/stream/catalogue'
+        'https://stream.svc.7digital.net/stream/catalogue'
       end
 
       def generate_url(track_id, format_id, country)
