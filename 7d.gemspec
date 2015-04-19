@@ -26,4 +26,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 3.2', '>= 3.2.0'
   s.add_development_dependency 'rubocop', '~> 0.29.1'
   s.add_development_dependency 'faraday', '~> 0.9.1'
+  s.add_development_dependency 'guard-rspec', '~> 4.5.0'
+  s.add_development_dependency 'guard-rubocop', '~> 1.2.0'
 end
