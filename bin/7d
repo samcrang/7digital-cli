@@ -3,6 +3,5 @@
 $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')))
 
 require '7d/cli/app'
-require '7d/cli/signature_generator_factory'
 
-puts ::SevenDigital::CLI::App.new(::SevenDigital::CLI::SignatureGeneratorFactory.new).run(ARGV)
+puts ::SevenDigital::CLI::App.new.run(ARGV)

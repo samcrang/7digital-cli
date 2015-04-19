@@ -1,17 +1,17 @@
-require '7d/endpoints/helpers/require_signing'
+require '7d/endpoint'
 
 module SevenDigital
   module Endpoints
-    class StreamCatalogue
-      include Helpers::RequireSigning
+    class StreamCatalogue < Endpoint
+      name 'stream/catalogue'
+      path '/stream/catalogue'
+      host 'stream.svc.7digital.net'
 
-      def url(_ = nil)
-        'https://stream.svc.7digital.net/stream/catalogue'
-      end
+      protection :requires_signing
 
-      def generate_url(track_id, format_id, country)
-        sign trackid: track_id, formatid: format_id, country: country
-      end
+      parameter :trackid, 'Track ID', type: :integer, required: true
+      parameter :formatid, 'Format ID', type: :integer, default: 26
+      parameter :country, 'Country', type: :string, default: 'GB'
     end
   end
 end

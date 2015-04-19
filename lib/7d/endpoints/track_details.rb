@@ -1,17 +1,15 @@
-require '7d/endpoints/helpers/require_consumer_key'
+require '7d/endpoint'
 
 module SevenDigital
   module Endpoints
-    class TrackDetails
-      include Helpers::RequireConsumerKey
+    class TrackDetails < Endpoint
+      name 'track/details'
+      path '/1.2/track/details'
 
-      def url(_ = nil)
-        'https://api.7digital.com/1.2/track/details'
-      end
+      protection :requires_consumer_key
 
-      def generate_url(track_id, country)
-        sign trackid: track_id, country: country
-      end
+      parameter :trackid, 'Track ID', type: :integer, required: true
+      parameter :country, 'Country', type: :string, default: 'GB'
     end
   end
 end
