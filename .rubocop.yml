@@ -14,3 +14,6 @@ Metrics/AbcSize:
 
 Style/Documentation:
   Enabled: false
+
+Style/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space

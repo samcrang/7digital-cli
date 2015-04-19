@@ -1,6 +1,6 @@
 module SevenDigital
   class Endpoint
-    def self.host(host = nil)
+    def self.host(host=nil)
       if host
         @host = host
       else
@@ -8,7 +8,7 @@ module SevenDigital
       end
     end
 
-    def self.path(path = nil)
+    def self.path(path=nil)
       if path
         @path = path
       else
@@ -16,7 +16,7 @@ module SevenDigital
       end
     end
 
-    def self.name(name = nil)
+    def self.name(name=nil)
       if name
         @name = name
       else
@@ -24,7 +24,7 @@ module SevenDigital
       end
     end
 
-    def self.protection(protection = nil)
+    def self.protection(protection=nil)
       if protection
         @protection = protection
       else
@@ -36,12 +36,12 @@ module SevenDigital
       @parameters ||= {}
     end
 
-    def self.parameter(name, description, options = {})
+    def self.parameter(name, description, options={})
       @parameters ||= {}
       @parameters[name] = { description: description, options: options }
     end
 
-    def self.build_request(arguments = {})
+    def self.build_request(arguments={})
       arguments.reject! { |a| !parameters.include?(a) }
       required = parameters.each_value { |v| v[:options][:required] == true }
 
