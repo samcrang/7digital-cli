@@ -17,6 +17,8 @@ module SevenDigital
         requires_signing(request[:uri], request[:parameters])
       when :requires_signing_with_user
         requires_signing_with_user(request[:uri], request[:parameters])
+      else
+        raise ArgumentError
       end
     end
 

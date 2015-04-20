@@ -38,6 +38,7 @@ describe ::SevenDigital::Signer do
     expect(actual).to include('oauth_signature=')
   end
 
-  xit 'should raise an error if there is an unknown protection type' do
+  it 'should raise an error if there is an unknown protection type' do
+    expect { subject.sign(protection: :unknown) }.to raise_error(ArgumentError)
   end
 end
