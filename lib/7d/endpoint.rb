@@ -46,7 +46,7 @@ module SevenDigital
       required = parameters.each_value { |v| v[:options][:required] == true }
 
       required.each_key do |k|
-        fail ArgumentError unless arguments.include?(k)
+        raise ArgumentError unless arguments.include?(k)
       end
 
       {

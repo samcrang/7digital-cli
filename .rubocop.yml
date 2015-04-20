@@ -17,3 +17,6 @@ Style/Documentation:
 
 Style/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: no_space
+
+Style/SignalException:
+  EnforcedStyle: only_raise
