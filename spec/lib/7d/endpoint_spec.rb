@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ::SevenDigital::Endpoint do
   context 'derived classes' do
-    subject { Class.new ::SevenDigital::Endpoint }
+    subject { Class.new described_class }
 
     describe '.parameters' do
       it 'should populate a collection of parameters' do

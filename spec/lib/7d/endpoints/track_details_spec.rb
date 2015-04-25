@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ::SevenDigital::Endpoints::TrackDetails do
-  subject { ::SevenDigital::Endpoints::TrackDetails }
+  subject { described_class }
   let(:signer) { ::SevenDigital::Signer.new(ENV['SEVENDIGITAL_CONSUMER_KEY'], '', '', '') }
 
   describe '.build_request' do

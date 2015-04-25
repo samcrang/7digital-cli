@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ::SevenDigital::Endpoints::StreamCatalogue do
-  subject { ::SevenDigital::Endpoints::StreamCatalogue }
+  subject { described_class }
   let(:signer) { ::SevenDigital::Signer.new ENV['SEVENDIGITAL_CONSUMER_KEY'], ENV['SEVENDIGITAL_CONSUMER_SECRET'], '', '' }
 
   describe '.build_request' do

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ::SevenDigital::Signer do
-  subject { ::SevenDigital::Signer.new 'consumer_key', 'consumer_secret', 'token_key', 'token_secret' }
+  subject { described_class.new 'consumer_key', 'consumer_secret', 'token_key', 'token_secret' }
 
   it 'should add the consumer key for requests that require it' do
     actual = subject.sign(
