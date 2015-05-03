@@ -11,21 +11,21 @@ require '7d/endpoints/stream_subscription'
 module SevenDigital
   module CLI
     class App
-      def initialize(argv, stdin=STDIN, stdout=STDOUT, stderr=STDERR, kernel=Kernel, env=ENV)
-        @argv = argv
+      def initialize(stdin=STDIN, stdout=STDOUT, stderr=STDERR, kernel=Kernel, env=ENV, signer=::SevenDigital::Signer)
         @stdin = stdin
         @stdout = stdout
         @stderr = stderr
         @kernel = kernel
         @env = env
+        @signer = signer
       end
 
-      def execute!
-        subcommand = @argv.shift
+      def execute!(args)
+        subcommand = args.shift
 
         case subcommand
         when 'sign'
-          sign_subcommand(@argv)
+          sign_subcommand(args)
         else
           show_main_help
         end
@@ -45,7 +45,7 @@ module SevenDigital
           end
         end
 
-        @stdout.puts ::SevenDigital::Signer.new(@env['SEVENDIGITAL_CONSUMER_KEY'], @env['SEVENDIGITAL_CONSUMER_SECRET'], @env['SEVENDIGITAL_TOKEN'], @env['SEVENDIGITAL_TOKEN_SECRET']).sign(endpoint.build_request(opts))
+        @stdout.puts @signer.new(@env['SEVENDIGITAL_CONSUMER_KEY'], @env['SEVENDIGITAL_CONSUMER_SECRET'], @env['SEVENDIGITAL_TOKEN'], @env['SEVENDIGITAL_TOKEN_SECRET']).sign(endpoint.build_request(opts))
       end
 
       private

@@ -4,4 +4,4 @@ $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib
 
 require '7d/cli/app'
 
-::SevenDigital::CLI::App.new(ARGV.dup).execute!
+::SevenDigital::CLI::App.new.execute!(ARGV.dup)
