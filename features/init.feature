@@ -1,6 +1,6 @@
 Feature: init
   Scenario:
-    Given I remove the file "~/.7d"
+    Given the file "~/.7d" does not exist
     When I run `7d init` interactively
     And I type "YOUR_KEY_HERE"
     And I type "YOUR_SECRET_HERE"
