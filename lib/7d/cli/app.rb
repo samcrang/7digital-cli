@@ -43,9 +43,18 @@ module SevenDigital
           endpoint.parameters.each do |k, v|
             opt k, v[:description], v[:options]
           end
+          opt :'consumer-key', 'Consumer key', type: :string
+          opt :'consumer-secret', 'Consumer secret', type: :string
+          opt :token, 'Token', type: :string
+          opt :'token-secret', 'Token secret', type: :string
         end
 
-        @stdout.puts @signer.new(@env['SEVENDIGITAL_CONSUMER_KEY'], @env['SEVENDIGITAL_CONSUMER_SECRET'], @env['SEVENDIGITAL_TOKEN'], @env['SEVENDIGITAL_TOKEN_SECRET']).sign(endpoint.build_request(opts))
+        consumer_key = opts[:'consumer-key'] || @env['SEVENDIGITAL_CONSUMER_KEY']
+        consumer_secret = opts[:'consumer-secret'] || @env['SEVENDIGITAL_CONSUMER_SECRET']
+        token = opts[:token] || @env['SEVENDIGITAL_TOKEN']
+        token_secret = opts[:'token-secret'] || @env['SEVENDIGITAL_TOKEN_SECRET']
+
+        @stdout.puts @signer.new(consumer_key, consumer_secret, token, token_secret).sign(endpoint.build_request(opts))
       end
 
       private
