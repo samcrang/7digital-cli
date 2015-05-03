@@ -11,12 +11,21 @@ require '7d/endpoints/stream_subscription'
 module SevenDigital
   module CLI
     class App
-      def run(args)
-        subcommand = args.shift
+      def initialize(argv, stdin=STDIN, stdout=STDOUT, stderr=STDERR, kernel=Kernel, env=ENV)
+        @argv = argv
+        @stdin = stdin
+        @stdout = stdout
+        @stderr = stderr
+        @kernel = kernel
+        @env = env
+      end
+
+      def execute!
+        subcommand = @argv.shift
 
         case subcommand
         when 'sign'
-          return sign_subcommand(args)
+          sign_subcommand(@argv)
         else
           show_main_help
         end
@@ -25,16 +34,10 @@ module SevenDigital
       def sign_subcommand(args)
         endpoint_name = args.shift
 
-        if endpoint_name.nil?
-           show_sign_help
-        end
-
         endpoints = ObjectSpace.each_object(Class).select { |x| x < ::SevenDigital::Endpoint }
         endpoint = endpoints.find { |x| x.name == endpoint_name }
 
-        if endpoint.nil?
-          show_sign_help
-        end
+        show_sign_help if endpoint.nil?
 
         opts = Trollop.options args do
           endpoint.parameters.each do |k, v|
@@ -42,22 +45,22 @@ module SevenDigital
           end
         end
 
-        ::SevenDigital::Signer.new(ENV['SEVENDIGITAL_CONSUMER_KEY'], ENV['SEVENDIGITAL_CONSUMER_SECRET'], ENV['SEVENDIGITAL_TOKEN'], ENV['SEVENDIGITAL_TOKEN_SECRET']).sign(endpoint.build_request(opts))
+        @stdout.puts ::SevenDigital::Signer.new(@env['SEVENDIGITAL_CONSUMER_KEY'], @env['SEVENDIGITAL_CONSUMER_SECRET'], @env['SEVENDIGITAL_TOKEN'], @env['SEVENDIGITAL_TOKEN_SECRET']).sign(endpoint.build_request(opts))
       end
 
       private
 
       def show_main_help
-        puts "Subcommands:
+        @stdout.puts "Subcommands:
   sign"
-        exit 1
+        @kernel.exit 1
       end
 
       def show_sign_help
-        puts "Endpoints:
+        @stdout.puts "Endpoints:
   clip
   track/details"
-        exit 1
+        @kernel.exit 1
       end
     end
   end
