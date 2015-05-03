@@ -17,14 +17,32 @@ module SevenDigital
         case subcommand
         when 'sign'
           return sign_subcommand(args)
+        else
+          puts "Subcommands:
+  sign"
+          exit 1
         end
       end
 
       def sign_subcommand(args)
         endpoint_name = args.shift
 
+        if endpoint_name.nil?
+          puts "Endpoints:
+  clip
+  track/details"
+          exit 1
+        end
+
         endpoints = ObjectSpace.each_object(Class).select { |x| x < ::SevenDigital::Endpoint }
         endpoint = endpoints.find { |x| x.name == endpoint_name }
+
+        if endpoint.nil?
+          puts "Endpoints:
+  clip
+  track/details"
+          exit 1
+        end
 
         opts = Trollop.options args do
           endpoint.parameters.each do |k, v|
