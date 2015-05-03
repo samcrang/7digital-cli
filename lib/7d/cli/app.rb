@@ -1,4 +1,5 @@
 require 'trollop'
+require 'yaml'
 
 require '7d/signer'
 
@@ -26,9 +27,35 @@ module SevenDigital
         case subcommand
         when 'sign'
           sign_subcommand(args)
+        when 'init'
+          init_subcommand
         else
           show_main_help
         end
+      end
+
+      private
+
+      def init_subcommand
+        configuration_file_path = "#{ENV['HOME']}/.7d"
+
+        @kernel.exit 1 if File.exist? configuration_file_path
+
+        print 'Consumer Key: '
+        consumer_key = @stdin.gets.chomp
+        print 'Consumer Secret: '
+        consumer_secret = @stdin.gets.chomp
+        print 'Token: '
+        token = @stdin.gets.chomp
+        print 'Token Secret: '
+        token_secret = @stdin.gets.chomp
+
+        File.write(configuration_file_path, {
+          'consumer_key' => consumer_key,
+          'consumer_secret' => consumer_secret,
+          'token' => token,
+          'token_secret' => token_secret
+        }.to_yaml)
       end
 
       def sign_subcommand(args)
@@ -57,10 +84,9 @@ module SevenDigital
         @stdout.puts @signer.new(consumer_key, consumer_secret, token, token_secret).sign(endpoint.build_request(opts))
       end
 
-      private
-
       def show_main_help
         @stdout.puts "Subcommands:
+  init
   sign"
         @kernel.exit 1
       end

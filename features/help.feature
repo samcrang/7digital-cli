@@ -5,6 +5,7 @@ Feature: help
     And the output should contain:
       """
       Subcommands:
+        init
         sign
         """
 
@@ -14,6 +15,7 @@ Feature: help
     And the output should contain:
       """
       Subcommands:
+        init
         sign
       """
 
@@ -43,5 +45,6 @@ Feature: help
     And the output should contain:
       """
       Subcommands:
+        init
         sign
       """
