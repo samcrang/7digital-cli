@@ -18,9 +18,7 @@ module SevenDigital
         when 'sign'
           return sign_subcommand(args)
         else
-          puts "Subcommands:
-  sign"
-          exit 1
+          show_main_help
         end
       end
 
@@ -28,20 +26,14 @@ module SevenDigital
         endpoint_name = args.shift
 
         if endpoint_name.nil?
-          puts "Endpoints:
-  clip
-  track/details"
-          exit 1
+           show_sign_help
         end
 
         endpoints = ObjectSpace.each_object(Class).select { |x| x < ::SevenDigital::Endpoint }
         endpoint = endpoints.find { |x| x.name == endpoint_name }
 
         if endpoint.nil?
-          puts "Endpoints:
-  clip
-  track/details"
-          exit 1
+          show_sign_help
         end
 
         opts = Trollop.options args do
@@ -51,6 +43,21 @@ module SevenDigital
         end
 
         ::SevenDigital::Signer.new(ENV['SEVENDIGITAL_CONSUMER_KEY'], ENV['SEVENDIGITAL_CONSUMER_SECRET'], ENV['SEVENDIGITAL_TOKEN'], ENV['SEVENDIGITAL_TOKEN_SECRET']).sign(endpoint.build_request(opts))
+      end
+
+      private
+
+      def show_main_help
+        puts "Subcommands:
+  sign"
+        exit 1
+      end
+
+      def show_sign_help
+        puts "Endpoints:
+  clip
+  track/details"
+        exit 1
       end
     end
   end
