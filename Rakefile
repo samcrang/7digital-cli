@@ -4,6 +4,8 @@ require 'rubocop/rake_task'
 
 RSpec::Core::RakeTask.new(:spec)
 RuboCop::RakeTask.new(:lint)
-Cucumber::Rake::Task.new(:features)
+Cucumber::Rake::Task.new(:features) do |t|
+  t.cucumber_opts = '--format progress'
+end
 
 task default: [:spec, :features, :lint]
